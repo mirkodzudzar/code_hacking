@@ -30,7 +30,7 @@
 
     <div class="form-group">
       {!! Form::label('photo_id', 'Photo:') !!}
-      {!! Form::file('photo_id', null, ['class' => 'form-control']) !!}
+      {!! Form::file('photo_id', null) !!}
     </div>
 
     <div class="form-group">
@@ -42,6 +42,6 @@
       {!! Form::submit('Create user', ['class' => 'btn btn-primary']) !!}
     </div>
 
-    {!! Form::close() !!}
+  {!! Form::close() !!}
 
 @endsection

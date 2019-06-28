@@ -4,11 +4,11 @@
 
   <h1>Edit Users</h1>
 
-  <div class="col-sm-3">
+  <div class="col-xs-3">
     <img src="{{$user->photo->file}}" alt="" class="img-responsive img-rounded">
   </div>
 
-  <div class="col-sm-8">
+  <div class="col-xs-9">
 
     @include('includes.errors')
 
@@ -45,7 +45,7 @@
       </div>
 
       <div class="form-group">
-        {!! Form::submit('Edit user', ['class' => 'btn btn-primary col-sm-6']) !!}
+        {!! Form::submit('Edit user', ['class' => 'btn btn-primary col-xs-6']) !!}
       </div>
 
     {!! Form::close() !!}
@@ -53,7 +53,7 @@
     {!! Form::open(['method' => 'DELETE', 'action' => ['AdminUsersController@destroy', $user->id]]) !!}
 
       <div class="form-group">
-        {!! Form::submit('Delete user', ['class' => 'btn btn-danger col-sm-6']) !!}
+        {!! Form::submit('Delete user', ['class' => 'btn btn-danger col-xs-6']) !!}
       </div>
 
     {!! Form::close() !!}

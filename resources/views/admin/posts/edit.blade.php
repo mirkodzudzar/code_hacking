@@ -2,6 +2,8 @@
 
 @section('content')
 
+  @include('includes.tinyeditor')
+
   <h1>Edit Post</h1>
 
   <div class="col-xs-3">

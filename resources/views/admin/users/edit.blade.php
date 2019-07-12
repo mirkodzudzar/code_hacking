@@ -5,7 +5,7 @@
   <h1>Edit Users</h1>
 
   <div class="col-xs-3">
-    <img src="{{$user->photo->file}}" alt="" class="img-responsive img-rounded">
+    <img src="{{$user->photo ? $user->photo->file : App\Photo::noImage()}}" alt="" class="img-responsive img-rounded">
   </div>
 
   <div class="col-xs-9">

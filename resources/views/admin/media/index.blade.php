@@ -42,10 +42,15 @@
         </thead>
         <tbody>
           @foreach($photos as $photo)
-
             <tr>
               @if($photo->id != 1)
+                @if($photo->user)
+                <td><i>user's picture</i></td>
+                @elseif($photo->post)
+                <td><i>post's picture</i></td>
+                @else
                 <td><input class="checkBoxes" type="checkbox" name="checkBoxArray[]" value="{{$photo->id}}"></td>
+                @endif
               @else
                 <td></td>
               @endif
@@ -53,17 +58,6 @@
               <td><img height="50" src="{{$photo->file}}" alt=""></td>
               <td>{{$photo->created_at ? $photo->created_at->diffForHumans() : 'no date'}}</td>
               <td>{{$photo->updated_at ? $photo->updated_at->diffForHumans() : 'no date'}}</td>
-              <td>
-                @if($photo->id !== 1)
-
-                {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminMediasController@destroy', $photo->id]]) !!}
-                  <div class="form-group">
-                    {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
-                  </div>
-                {!! Form::close() !!}
-
-                @endif
-              </td>
             </tr>
           @endforeach
         </tbody>

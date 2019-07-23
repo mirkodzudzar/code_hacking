@@ -40,16 +40,16 @@ class AdminMediasController extends Controller
 
     public function destroy($id)
     {
-
-      $photo = Photo::findOrFail($id);
-
-      unlink(public_path() . $photo->file);
-
-      $photo->delete();
-
-      Session::flash('deleted_photo', 'The photo '.$photo->file.' has been deleted!');
-
-      return redirect()->back();
+      //
+      // $photo = Photo::findOrFail($id);
+      //
+      // unlink(public_path() . $photo->file);
+      //
+      // $photo->delete();
+      //
+      // Session::flash('deleted_photo', 'The photo '.$photo->file.' has been deleted!');
+      //
+      // return redirect()->back();
 
     }
 
@@ -63,6 +63,8 @@ class AdminMediasController extends Controller
 
         foreach($photos as $photo)
         {
+
+          unlink(public_path() . $photo->file);
 
           $photo->delete();
 

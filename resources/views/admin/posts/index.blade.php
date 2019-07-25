@@ -33,21 +33,23 @@
     </tr>
   </thead>
   <tbody>
-    @if($posts)
-      @foreach($posts as $post)
-        <tr>
-          <td>{{$post->id}}</td>
-          <td><img height="50" src="{{$post->photo ? $post->photo->file : App\Photo::noImage()}}" alt=""></td>
-          <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
-          <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
-          <td>{{$post->title}}</td>
-          <td><a href="{{route('home.post', $post->slug)}}">View post</a></td>
-          <td><a href="{{route('admin.comments.show', $post->id)}}">View comments</a></td>
-          <td>{{$post->created_at->diffForHumans()}}</td>
-          <td>{{$post->updated_at->diffForHumans()}}</td>
-        </tr>
-      @endforeach
-    @endif
+    @forelse($posts as $post)
+      <tr>
+        <td>{{$post->id}}</td>
+        <td><img height="50" src="{{$post->photo ? $post->photo->file : App\Photo::noImage()}}" alt=""></td>
+        <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
+        <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
+        <td>{{$post->title}}</td>
+        <td><a href="{{route('home.post', $post->slug)}}">View post</a></td>
+        <td><a href="{{route('admin.comments.show', $post->id)}}">View comments</a></td>
+        <td>{{$post->created_at->diffForHumans()}}</td>
+        <td>{{$post->updated_at->diffForHumans()}}</td>
+      </tr>
+    @empty
+      <tr>
+        <th>No posts found</th>
+      </tr>
+    @endforelse
   </tbody>
 </table>
 

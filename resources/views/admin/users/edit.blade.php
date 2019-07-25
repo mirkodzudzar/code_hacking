@@ -12,6 +12,7 @@
 
     @include('includes.errors')
 
+    <!-- Model method provides us data of a user that we ar updating. Form is already filled for us -->
     {!! Form::model($user, ['method' => 'PATCH', 'action' => ['AdminUsersController@update', $user->id], 'files' => true]) !!}
 
       <div class="form-group">

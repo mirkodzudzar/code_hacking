@@ -2,6 +2,8 @@
 
 @section('content')
 
+  @include('includes.errors')
+
   <h1>Categories</h1>
 
   @if(Session::has('created_category'))
@@ -46,15 +48,17 @@
         </tr>
       </thead>
       <tbody>
-        @if($categories)
-          @foreach($categories as $category)
-            <tr>
-              <td>{{$category->id}}</td>
-              <td><a href="{{ route('admin.categories.edit', $category->id) }}">{{$category->name}}</a></td>
-              <td>{{$category->created_at ? $category->created_at->diffForHumans() : 'no date'}}</td>
-            </tr>
-          @endforeach
-        @endif
+        @forelse($categories as $category)
+          <tr>
+            <td>{{$category->id}}</td>
+            <td><a href="{{ route('admin.categories.edit', $category->id) }}">{{$category->name}}</a></td>
+            <td>{{$category->created_at ? $category->created_at->diffForHumans() : 'no date'}}</td>
+          </tr>
+        @empty
+          <tr>
+            <th>No category found</th>
+          </tr>
+        @endforelse
       </tbody>
     </table>
 

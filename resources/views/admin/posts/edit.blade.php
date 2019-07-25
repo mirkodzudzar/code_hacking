@@ -7,7 +7,7 @@
   <h1>Edit Post</h1>
 
   <div class="col-xs-3">
-    <img src="{{$post->photo->file}}" alt="" class="img-responsive img-rounded">
+    <img src="{{$post->photo ? $post->photo->file : App\Photo::noImage()}}" alt="" class="img-responsive img-rounded">
   </div>
 
   <div class="col-xs-9">

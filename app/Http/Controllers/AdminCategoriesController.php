@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Category;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CategoryRequest;
 
 class AdminCategoriesController extends Controller
 {

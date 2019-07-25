@@ -11,7 +11,50 @@
 |
 */
 
-Route::get('/', function () {
+//========> PRACTICE <========
+
+
+
+// //returns 'fallback' if user does not enter value of id
+// Route::get('users/{id?}', function($id = 'fallbackId'){
+//     return $id;
+// });
+
+// //value of an id must be an integer 0-9
+// Route::get('users/{id}', function($id){
+//   return $id;
+// })->where('id', '[0-9]+');
+
+// //Value od username must be a string with characters from A to Z(a to z)
+// Route::get('users/{username}', function($username){
+//   return $username;
+// })->where('username', '[A-Za-z]+');
+
+// //id must be an integer. slug must be a stirng with characters A-Z, a-z
+// Route::get('posts/{id}/{slug}', function($id, $slug){
+//   echo $id.", ".$slug;
+// })->where(['id' => '[0-9]+', 'slug' => '[A-Za-z]+']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+
+$router->get('/', function () {
     return view('auth.login');
 });
 
@@ -21,15 +64,16 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 // Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => 'admin'], function(){
+//admin prefix adds admin at the beginning of every route at this group
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
-  Route::get('/admin', function(){
+  Route::get('/', function(){
 
     return view('admin.index');
 
   });
 
-  Route::resource('admin/users', 'AdminUsersController', ['names' => [
+  Route::resource('users', 'AdminUsersController', ['names' => [
 
     'index' => 'admin.users.index',
     'create' => 'admin.users.create',
@@ -38,9 +82,9 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
-  Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'AdminPostsController@post']);
+  // Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'AdminPostsController@post']);
 
-  Route::resource('/admin/posts', 'AdminPostsController', ['names' => [
+  Route::resource('posts', 'AdminPostsController', ['names' => [
 
     'index' => 'admin.posts.index',
     'create' => 'admin.posts.create',
@@ -50,7 +94,7 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
-  Route::resource('/admin/categories', 'AdminCategoriesController', ['names' => [
+  Route::resource('categories', 'AdminCategoriesController', ['names' => [
 
     'index' => 'admin.categories.index',
     'create' => 'admin.categories.create',
@@ -60,7 +104,7 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
-  Route::resource('admin/media', 'AdminMediasController', ['names' => [
+  Route::resource('media', 'AdminMediasController', ['names' => [
 
     'index' => 'admin.media.index',
     'create' => 'admin.media.create',
@@ -70,9 +114,9 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
-  Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
+  Route::delete('delete/media', 'AdminMediasController@deleteMedia');
 
-  Route::resource('admin/comments', 'PostCommentsController', ['names' => [
+  Route::resource('comments', 'PostCommentsController', ['names' => [
 
     'index' => 'admin.comments.index',
     'create' => 'admin.comments.create',
@@ -82,7 +126,7 @@ Route::group(['middleware' => 'admin'], function(){
 
     ]]);
 
-  Route::resource('admin/comment/replies', 'CommentRepliesController', ['names' => [
+  Route::resource('comment/replies', 'CommentRepliesController', ['names' => [
 
     'index' => 'admin.comment.replies.index',
     'create' => 'admin.comment.replies.create',
@@ -93,6 +137,8 @@ Route::group(['middleware' => 'admin'], function(){
     ]]);
 
 });
+
+Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'AdminPostsController@post']);
 
 Route::group(['middleware' => 'auth'], function(){
 

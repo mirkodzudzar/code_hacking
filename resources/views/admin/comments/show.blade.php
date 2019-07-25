@@ -12,8 +12,6 @@
     </div>
   @endif
 
-  @if(count($comments) > 0)
-
   <h1>Comments</h1>
 
   <table class="table">
@@ -26,7 +24,7 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($comments as $comment)
+      @forelse($comments as $comment)
       <tr>
         <td>{{$comment->id}}</td>
         <td>{{$comment->author}}</td>
@@ -67,12 +65,12 @@
 
         </td>
       </tr>
-      @endforeach
+      @empty
+        <tr>
+          <th>No comments found</th>
+        </tr>
+      @endforelse
     </tbody>
   </table>
-
-  @else
-    <h1 class="text-center">No comments</h1>
-  @endif
 
 @endsection

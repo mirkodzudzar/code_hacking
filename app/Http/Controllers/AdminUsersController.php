@@ -143,6 +143,15 @@ class AdminUsersController extends Controller
       if($file = $request->file('photo_id'))
       {
 
+        if($user->photo->id !== 1)
+        {
+
+          unlink(public_path() . $user->photo->file);
+
+          $user->photo->delete();
+
+        }
+
         $name = time() . $file->getClientOriginalName();
 
         $file->move('images', $name);
@@ -180,6 +189,8 @@ class AdminUsersController extends Controller
         {
 
           unlink(public_path() . $user->photo->file);
+
+          $user->photo->delete();
 
         }
 

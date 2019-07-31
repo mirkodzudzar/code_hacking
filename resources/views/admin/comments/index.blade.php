@@ -29,7 +29,7 @@
           <td>{{$comment->id}}</td>
           <td>{{$comment->author}}</td>
           <td>{{$comment->email}}</td>
-          <td>{{$comment->body}}</td>
+          <td>{{str_limit($comment->body, $limit = 25, $end = '...')}}</td>
           <td><a href="{{route('home.post', $comment->post->slug)}}">View post</a></td>
           <td><a href="{{route('admin.comment.replies.show', $comment->id)}}">View replies</a></td>
           <td>

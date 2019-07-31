@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Post;
 use App\Http\Requests\PostsCreateRequest;
+use App\Http\Requests\PostsEditRequest;
 use App\Photo;
 use App\Category;
 use Illuminate\Support\Facades\Session;
@@ -109,7 +110,7 @@ class AdminPostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostsEditRequest $request, $id)
     {
         $post = Post::findOrFail($id);
 
@@ -117,6 +118,15 @@ class AdminPostsController extends Controller
 
         if($file = $request->file('photo_id'))
         {
+
+          if($post->photo->id !== 1)
+          {
+
+            unlink(public_path() . $post->photo->file);
+
+            $post->photo->delete();
+
+          }
 
           $name = time() . $file->getClientOriginalName();
 
@@ -157,6 +167,8 @@ class AdminPostsController extends Controller
       {
 
         unlink(public_path() . $post->photo->file);
+
+        $post->photo->delete();
 
       }
 

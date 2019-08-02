@@ -19,16 +19,12 @@ Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-// Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 //admin prefix adds admin at the beginning of every route at this group
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
-  Route::get('/', function(){
-
-    return view('admin.index');
-
-  });
+  Route::get('/', 'AdminController@index');
 
   Route::resource('users', 'AdminUsersController', ['names' => [
 
@@ -95,7 +91,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
 });
 
-Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'AdminPostsController@post']);
+Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'HomeController@post']);
 
 Route::group(['middleware' => 'auth'], function(){
 

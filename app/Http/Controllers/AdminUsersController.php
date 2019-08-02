@@ -72,12 +72,12 @@ class AdminUsersController extends Controller
           $input['photo_id'] = $photo->id;
 
         }
-        else
-        {
-
-          $input['photo_id'] = Photo::id_of_no_photo;
-
-        }
+        // else
+        // {
+        //
+        //   $input['photo_id'] = Photo::id_of_no_photo;
+        //
+        // }
 
         $input['password'] = bcrypt($request->password);
 
@@ -143,7 +143,7 @@ class AdminUsersController extends Controller
       if($file = $request->file('photo_id'))
       {
 
-        if($user->photo->id !== 1)
+        if($user->photo)
         {
 
           unlink(public_path() . $user->photo->file);
@@ -164,7 +164,7 @@ class AdminUsersController extends Controller
       else
       {
 
-        $input['photo_id'] = $user->photo->id;
+        $input['photo_id'] = $user->photo ? $user->photo->id : 0;
 
       }
 

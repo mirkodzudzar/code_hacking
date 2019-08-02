@@ -23,9 +23,9 @@
     <tr>
       <th>Id</th>
       <th>Photo</th>
+      <th>Title</th>
       <th>User</th>
       <th>Category</th>
-      <th>Title</th>
       <th>Post link</th>
       <th>Comments</th>
       <th>Created</th>
@@ -37,9 +37,9 @@
       <tr>
         <td>{{$post->id}}</td>
         <td><img height="50" src="{{$post->photo ? $post->photo->file : App\Photo::noImage()}}" alt=""></td>
-        <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user->name}}</a></td>
+        <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></td>
+        <td>{{$post->user->name}}</td>
         <td>{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
-        <td>{{$post->title}}</td>
         <td><a href="{{route('home.post', $post->slug)}}">View post</a></td>
         <td><a href="{{route('admin.comments.show', $post->id)}}">View comments</a></td>
         <td>{{$post->created_at->diffForHumans()}}</td>

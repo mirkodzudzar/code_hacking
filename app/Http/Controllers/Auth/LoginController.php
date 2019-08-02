@@ -31,8 +31,8 @@ class LoginController extends Controller
 
          return 'admin';
 
-       }
-         return '404';
+       }else{
+         return '/';}
      }
     /**
      * Create a new controller instance.

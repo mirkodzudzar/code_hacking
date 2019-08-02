@@ -33,10 +33,24 @@ class Photo extends Model
 
     }
 
+    public static function idOfNoPhoto()
+    {
+
+      return 'no_image';
+
+    }
+
+    public static function noPostImage()
+    {
+
+      return "http://placehold.it/700x200";
+
+    }
+
     public static function noImage()
     {
 
-      return "no_image";
+      return 'http://denrakaev.com/wp-content/uploads/2015/03/no-image.png';
 
     }
 

@@ -63,12 +63,12 @@ class AdminPostsController extends Controller
           $input['photo_id'] = $photo->id;
 
         }
-        else
-        {
-
-          $input['photo_id'] = Photo::id_of_no_photo;
-
-        }
+        // else
+        // {
+        //
+        //   $input['photo_id'] = Photo::id_of_no_photo;
+        //
+        // }
 
         $user->posts()->create($input);
 
@@ -119,7 +119,7 @@ class AdminPostsController extends Controller
         if($file = $request->file('photo_id'))
         {
 
-          if($post->photo->id !== 1)
+          if($post->photo)
           {
 
             unlink(public_path() . $post->photo->file);
@@ -177,17 +177,6 @@ class AdminPostsController extends Controller
       Session::flash('deleted_post', 'The '.$post->title.' post has been deleted!');
 
       return redirect('admin/posts');
-
-    }
-
-    public function post($slug)
-    {
-
-      $post = Post::findBySlugOrFail($slug);
-
-      $comments = $post->comments()->whereIsActive(1)->get();
-
-      return view('post', compact('post','comments'));
 
     }
 }

@@ -12,8 +12,6 @@
 
   <div class="col-xs-9">
 
-    @include('includes.errors')
-
     {!! Form::model($post, ['method' => 'PATCH', 'action' => ['AdminPostsController@update', $post->id], 'files' => true]) !!}
 
       <div class="form-group">

@@ -4,16 +4,6 @@
 
   <h1>Media</h1>
 
-  @if(Session::has('deleted_photo'))
-    <div class="alert alert-success">
-      <p>{{session('deleted_photo')}}</p>
-    </div>
-  @elseif(Session::has('more_photos_deleted'))
-    <div class="alert alert-success">
-      <p>{{session('more_photos_deleted')}}</p>
-    </div>
-  @endif
-
   <form action="delete/media" method="post" class="form-inline">
 
     {{csrf_field()}}

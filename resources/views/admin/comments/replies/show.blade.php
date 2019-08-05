@@ -2,16 +2,6 @@
 
 @section('content')
 
-  @if(Session::has('reply_updated'))
-    <div class="alert alert-success">
-      <p>{{session('reply_updated')}}</p>
-    </div>
-  @elseif(Session::has('reply_deleted'))
-    <div class="alert alert-success">
-      <p>{{session('reply_deleted')}}</p>
-    </div>
-  @endif
-
   <h1>Replies</h1>
 
   <table class="table">

@@ -4,8 +4,6 @@
 
   <h1>Create Users</h1>
 
-  @include('includes.errors')
-
   {!! Form::open(['method' => 'POST', 'action' => 'AdminUsersController@store', 'files' => true]) !!}
 
     <div class="form-group">

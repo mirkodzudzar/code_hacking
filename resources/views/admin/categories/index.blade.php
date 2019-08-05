@@ -2,23 +2,7 @@
 
 @section('content')
 
-  @include('includes.errors')
-
   <h1>Categories</h1>
-
-  @if(Session::has('created_category'))
-    <div class="alert alert-success">
-      <p>{{session('created_category')}}</p>
-    </div>
-  @elseif(Session::has('updated_category'))
-    <div class="alert alert-success">
-      <p>{{session('updated_category')}}</p>
-    </div>
-  @elseif(Session::has('deleted_category'))
-    <div class="alert alert-success">
-      <p>{{session('deleted_category')}}</p>
-    </div>
-  @endif
 
   <div class="col-xs-6">
 

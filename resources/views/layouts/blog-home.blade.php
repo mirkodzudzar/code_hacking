@@ -17,7 +17,9 @@
 
         <div class="row">
 
-          @include('includes.flash_messages')
+          @include('includes.front_flash_messages')
+
+          @include('includes.errors')
 
           <!-- CONTENT OF HOME PAGE -->
           @yield('content')
@@ -38,7 +40,7 @@
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{{asset('js/libs.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>

@@ -2,16 +2,6 @@
 
 @section('content')
 
-  @if(Session::has('comment_updated'))
-    <div class="alert alert-success">
-      <p>{{session('comment_updated')}}</p>
-    </div>
-  @elseif(Session::has('comment_deleted'))
-    <div class="alert alert-success">
-      <p>{{session('comment_deleted')}}</p>
-    </div>
-  @endif
-
   <h1>Comments</h1>
 
   <table class="table">

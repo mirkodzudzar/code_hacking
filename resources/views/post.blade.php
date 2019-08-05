@@ -138,13 +138,14 @@
 
 @section('scripts')
 
-    <script>
+  <script>
 
-        $(".comment-reply-container .toggle-reply").click(function(){
+      $(".comment-reply-container .toggle-reply").click(function(){
 
-            $(this).next().slideToggle("slow");
+          $(this).next().slideToggle("slow");
 
-        });
-    </script>
+      });
+
+  </script>
 
 @endsection

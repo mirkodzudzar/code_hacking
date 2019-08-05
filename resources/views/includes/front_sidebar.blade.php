@@ -21,7 +21,7 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                   @forelse($categories as $category)
-                    <li><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></li>
+                    <li>{{$category->name}}</li>
                   @empty
                     <p>No categories found</p>
                   @endforelse

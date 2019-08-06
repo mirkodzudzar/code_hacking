@@ -21,7 +21,23 @@
             <div class="col-lg-6">
                 <ul class="list-unstyled">
                   @forelse($categories as $category)
-                    <li>{{$category->name}}</li>
+                    @if(!Auth::guest())
+
+                      @if(Auth::user()->role_id && Auth::user()->is_active)
+
+                        @if(Auth::user()->isAdmin())
+                          <li><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></li>
+                        @else
+                          <li>{{$category->name}}</li>
+                        @endif
+
+                      @else
+                        <li>{{$category->name}}</li>
+                      @endif
+
+                    @else
+                      <li>{{$category->name}}</li>
+                    @endif
                   @empty
                     <p>No categories found</p>
                   @endforelse

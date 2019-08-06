@@ -7,11 +7,21 @@
 
       <!-- Blog Post -->
 
-      <!-- Title -->
-      <h1>{{$post->title}}</h1>
+      @if(!Auth::guest())
 
-      <!-- Author -->
-      <p class="lead">by {{$post->user->name}}</a></p>
+        @if(Auth::user()->isAdmin())
+          <!-- Title -->
+          <h1><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->title}}</a></h1>
+          <p class="lead">by <a href="{{route('admin.users.edit', $post->user->id)}}">{{$post->user->name}}</a></p>
+        @else
+          <h1>{{$post->title}}</h1>
+          <p class="lead">{{$post->user->name}}</p>
+        @endif
+
+      @else
+        <h1>{{$post->title}}</h1>
+        <p class="lead">{{$post->user->name}}</p>
+      @endif
 
       <hr>
 

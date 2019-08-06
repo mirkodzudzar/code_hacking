@@ -21,6 +21,7 @@
                   <a href="{{ url('/register') }}">Register</a>
                 </li>
               @else
+                <li><a href="">{{Auth::user()->email}}</a></li>
                 @if(Auth::user()->role_id && Auth::user()->is_active)
                   @if(Auth::user()->isAdmin())
                     <li>

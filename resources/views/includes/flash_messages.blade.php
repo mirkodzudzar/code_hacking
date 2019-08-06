@@ -82,5 +82,5 @@
   <div class="alert alert-success">
     <p>{{session('deleted_user')}}</p>
   </div>
-  
+
 @endif

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\user;
 use App\Post;
 use App\Category;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -28,13 +30,31 @@ class HomeController extends Controller
     public function index()
     {
 
-        //$year = Carbon::now()->year;
+      //$year = Carbon::now()->year;
 
-        $posts = Post::paginate(5);
+      $posts = Post::paginate(5);
 
-        $categories = Category::all();
+      $categories = Category::all();
 
-        return view('front.home', compact('posts', 'categories'));
+      $q = Input::get('q');
+
+      if($q != '')
+      {
+
+        $post = Post::where('title', 'LIKE', '%' . $q . '%')->get();
+
+        if(count($post) > 0)
+        {
+
+          return view('front.home', compact('posts', 'categories'))->withDetails($post)->withQuery($q);
+
+        }
+
+        return view('front.home', compact('posts', 'categories'))->withMessage('No posts found!');
+      }
+
+      return view('front.home', compact('posts', 'categories'));
+
     }
 
     public function post($slug)

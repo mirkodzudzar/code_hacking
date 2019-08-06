@@ -3,14 +3,44 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <div class="input-group">
-            <input type="text" class="form-control">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-            </button>
-            </span>
+        <form class="" action="{{URL::to('/')}}" method="POST" role="search">
+          {{csrf_field()}}
+          <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search some post">
+              <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit">
+                      <span class="glyphicon glyphicon-search"></span>
+                  </button>
+              </span>
+          </div>
+        </form>
+
+        @if(isset($details))
+        <div class="alert alert-success">
+          <p>The search results for your query <b> {{$query}} </b> are: </p>
+          <table class="table table-stripped">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($details as $post)
+                <tr>
+                  <td><a href="{{route('home.post', $post->slug)}}">{{$post->title}}</a></td>
+                  <td>{{$post->user->name}}</td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
+        <!-- When you search for empty string, it will not show a message -->
+        @elseif(isset($message))
+          <div class="alert alert-danger">
+            <p>{{$message}}</p>
+          </div>
+        @endif
         <!-- /.input-group -->
     </div>
 
@@ -49,9 +79,9 @@
     </div>
 
     <!-- Side Widget Well -->
-    <div class="well">
+    <!-- <div class="well">
         <h4>Side Widget Well</h4>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-    </div>
+    </div> -->
 
 </div>

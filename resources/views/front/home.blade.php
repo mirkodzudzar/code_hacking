@@ -22,7 +22,7 @@
         @endif
         <p><span class="glyphicon glyphicon-time"></span>{{$post->created_at->diffForHumans()}}</p>
         <hr>
-        <img class="img-responsive" src="http://placehold.it/900x300" alt="">
+        <img class="img-responsive" src="{{$post->photo ? $post->photo->file : App\Photo::noPostImage()}}" alt="">
         <hr>
         <p>{!!str_limit($post->body, $limit = 250)!!}</p>
         <a class="btn btn-primary" href="{{route('home.post', $post->slug)}}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>

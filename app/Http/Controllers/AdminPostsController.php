@@ -140,7 +140,7 @@ class AdminPostsController extends Controller
         else
         {
 
-          $input['photo_id'] = $post->photo->id;
+          $input['photo_id'] = $post->photo ? $post->photo->id : 0;
 
         }
 

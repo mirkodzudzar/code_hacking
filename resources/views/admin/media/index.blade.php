@@ -15,7 +15,7 @@
       </select>
     </div>
     <div class="form-group">
-      <input type="submit" name="delete_all" class="btn btn-primary" name="">
+      <input type="submit" name="delete_all" class="btn btn-primary" name="" onClick="return ConfirmDelete();">
     </div>
 
     <table class="table">
@@ -86,6 +86,15 @@
                 }
             });
         });
+
+        function ConfirmDelete()
+        {
+          var x = confirm("Are you sure you want to delete photo(s)?");
+          if (x)
+              return true;
+          else
+            return false;
+        }
 
     </script>
 

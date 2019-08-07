@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-group">
-              {!! Form::submit('Submit comment', ['class' => 'btn btn-primary']) !!}
+              {!! Form::submit('Submit comment', ['class' => 'btn btn-primary', 'onClick' => 'return ConfirmSubmitComment();']) !!}
             </div>
 
           {!! Form::close() !!}
@@ -99,7 +99,7 @@
                          </div>
 
                          <div class="form-group">
-                             {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
+                             {!! Form::submit('Submit', ['class'=>'btn btn-primary', 'onClick' => 'return ConfirmSubmitReply();']) !!}
                          </div>
                     {!! Form::close() !!}
 
@@ -155,6 +155,24 @@
         $(this).next().slideToggle('slow');
 
     });
+
+    function ConfirmSubmitComment()
+    {
+      var x = confirm("Are you sure you want to post a comment?");
+      if(x)
+        return true;
+      else
+        return false;
+    }
+
+    function ConfirmSubmitReply()
+    {
+      var x = confirm("Are you sure you want to post a reply?");
+      if(x)
+        return true;
+      else
+        return false;
+    }
 
   </script>
 

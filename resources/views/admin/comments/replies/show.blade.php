@@ -49,7 +49,7 @@
             {!! Form::open(['method' => 'DELETE', 'action' => ['CommentRepliesController@destroy', $reply->id]]) !!}
 
               <div class="form-group">
-                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                {!! Form::submit('Delete', ['class' => 'btn btn-danger', 'onClick' => 'return ConfirmDelete();']) !!}
               </div>
             {!! Form::close() !!}
 
@@ -62,5 +62,22 @@
       @endforelse
     </tbody>
   </table>
+
+@endsection
+
+@section('scripts')
+
+  <script>
+
+    function ConfirmDelete()
+    {
+      var x = confirm("Are you sure you want to delete reply?");
+      if (x)
+          return true;
+      else
+        return false;
+    }
+
+  </script>
 
 @endsection

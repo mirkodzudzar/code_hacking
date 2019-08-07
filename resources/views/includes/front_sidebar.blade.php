@@ -3,10 +3,10 @@
     <!-- Blog Search Well -->
     <div class="well">
         <h4>Blog Search</h4>
-        <form class="" action="{{URL::to('/')}}" method="POST" role="search">
+        <form class="" action="{{URL::to('/search')}}" method="POST" role="search">
           {{csrf_field()}}
           <div class="input-group">
-              <input type="text" name="q" class="form-control" placeholder="Search some post">
+              <input type="text" name="query" class="form-control" placeholder="Search some post">
               <span class="input-group-btn">
                   <button class="btn btn-default" type="submit">
                       <span class="glyphicon glyphicon-search"></span>
@@ -16,7 +16,7 @@
         </form>
 
         @if(isset($details))
-        <div class="alert alert-success">
+        <div class="alert alert-dark">
           <p>The search results for your query <b> {{$query}} </b> are: </p>
           <table class="table table-stripped">
             <thead>

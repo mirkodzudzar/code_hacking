@@ -12,6 +12,7 @@ use App\Http\Requests\PostsEditRequest;
 use App\Photo;
 use App\Category;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminPostsController extends Controller
 {
@@ -23,6 +24,23 @@ class AdminPostsController extends Controller
     public function index()
     {
         $posts = Post::paginate(10);
+
+        $query = Input::get('query');
+
+        if($query != '')
+        {
+
+          $post = Post::where('title', 'LIKE', '%' . $query . '%')->get();
+
+          if(count($post) > 0)
+          {
+
+            return view('admin.posts.index', compact('posts'))->withDetails($post)->withQuery($query);
+
+          }
+
+          return view('admin.posts.index', compact('posts'))->withMessage('No posts found!');
+        }
 
         return view('admin.posts.index', compact('posts'));
     }

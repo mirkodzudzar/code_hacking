@@ -1,7 +1,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search">
+            <!-- <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <input type="text" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
@@ -10,14 +10,13 @@
                             </button>
                         </span>
                 </div>
-                <!-- /input-group -->
-            </li>
+            </li> -->
             <li>
-                <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="/admin"><i class="fa fa-bar-chart fa-fw"></i> Dashboard</a>
             </li>
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-user fa-fw"></i>Users<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{route('admin.users.index')}}">All Users</a>
@@ -32,7 +31,7 @@
             </li>
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-newspaper-o fa-fw"></i> Posts<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ route('admin.posts.index') }}">All Posts</a>
@@ -52,7 +51,7 @@
 
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-puzzle-piece fa-fw"></i>Categories<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ route('admin.categories.index') }}">All Categories</a>
@@ -63,7 +62,7 @@
 
 
             <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-image fa-fw"></i>Media<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
                         <a href="{{ route('admin.media.index') }}">All Media</a>

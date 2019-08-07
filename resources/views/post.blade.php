@@ -150,11 +150,11 @@
 
   <script>
 
-      $(".comment-reply-container .toggle-reply").click(function(){
+    $('.toggle-reply').on('click', function() {
 
-          $(this).next().slideToggle("slow");
+        $(this).next().slideToggle('slow');
 
-      });
+    });
 
   </script>
 

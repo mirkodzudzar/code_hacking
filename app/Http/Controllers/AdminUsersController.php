@@ -11,6 +11,7 @@ use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
 use App\Photo;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
 
 class AdminUsersController extends Controller
 {
@@ -22,6 +23,23 @@ class AdminUsersController extends Controller
     public function index()
     {
       $users = User::all();
+
+      $query = Input::get('query');
+
+      if($query != '')
+      {
+
+        $user = User::where('name', 'LIKE', '%' . $query . '%')->orWhere('email', 'LIKE', '%' . $query . '%')->get();
+
+        if(count($user) > 0)
+        {
+
+          return view('admin.users.index', compact('users'))->withDetails($user)->withQuery($query);
+
+        }
+
+        return view('admin.users.index', compact('users'))->withMessage('No user found!');
+      }
 
       return view('admin.users.index', compact('users'));
     }

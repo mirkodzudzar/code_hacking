@@ -36,17 +36,17 @@ class HomeController extends Controller
 
       $categories = Category::all();
 
-      $q = Input::get('q');
+      $query = Input::get('query');
 
-      if($q != '')
+      if($query != '')
       {
 
-        $post = Post::where('title', 'LIKE', '%' . $q . '%')->get();
+        $post = Post::where('title', 'LIKE', '%' . $query . '%')->get();
 
         if(count($post) > 0)
         {
 
-          return view('front.home', compact('posts', 'categories'))->withDetails($post)->withQuery($q);
+          return view('front.home', compact('posts', 'categories'))->withDetails($post)->withQuery($query);
 
         }
 

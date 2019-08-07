@@ -22,12 +22,14 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', 'HomeController@index');
 
 // Search box
-Route::post('/', 'HomeController@index');
+Route::post('/search', 'HomeController@index');
 
 //admin prefix adds admin at the beginning of every route at this group
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
   Route::get('/', 'AdminController@index');
+
+  Route::post('/users/search', 'AdminUsersController@index');
 
   Route::resource('users', 'AdminUsersController', ['names' => [
 
@@ -39,6 +41,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
     ]]);
 
   // Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'AdminPostsController@post']);
+
+  Route::post('/posts/search', 'AdminPostsController@index');
 
   Route::resource('posts', 'AdminPostsController', ['names' => [
 

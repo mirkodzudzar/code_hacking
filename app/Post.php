@@ -55,6 +55,20 @@ class Post extends Model
 
   }
 
+  public function likes()
+  {
+
+    return $this->hasMany('App\Like');
+
+  }
+
+  public function dislikes()
+  {
+
+    return $this->hasMany('App\Dislike');
+
+  }
+
   // public function photoPlaceholder()
   // {
   //

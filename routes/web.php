@@ -44,6 +44,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
   Route::post('/posts/search', 'AdminPostsController@index');
 
+  Route::get('/posts/like/{slug}', ['as' => 'admin.posts.like' , 'uses' => 'HomeController@like']);
+
+  Route::get('/posts/dislike/{slug}', ['as' => 'admin.posts.dislike' , 'uses' => 'HomeController@dislike']);
+
   Route::resource('posts', 'AdminPostsController', ['names' => [
 
     'index' => 'admin.posts.index',
@@ -98,7 +102,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
 });
 
-Route::get('/post/{id}', ['as' => 'home.post' , 'uses' => 'HomeController@post']);
+Route::get('/post/{slug}', ['as' => 'home.post' , 'uses' => 'HomeController@post']);
+
+Route::get('/post/{slug}/like', ['as' => 'home.post.like' , 'uses' => 'HomeController@like']);
+
+Route::get('/post/{slug}/dislike', ['as' => 'home.post.dislike' , 'uses' => 'HomeController@dislike']);
 
 Route::group(['middleware' => 'auth'], function(){
 

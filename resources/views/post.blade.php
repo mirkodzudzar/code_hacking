@@ -15,19 +15,27 @@
           <p class="lead">by <a href="{{route('admin.users.edit', $post->user->id)}}">{{$post->user->name}}</a></p>
         @else
           <h1>{{$post->title}}</h1>
-          <p class="lead">{{$post->user->name}}</p>
+          <p class="lead">by {{$post->user->name}}</p>
         @endif
 
       @else
         <h1>{{$post->title}}</h1>
-        <p class="lead">{{$post->user->name}}</p>
+        <p class="lead">by {{$post->user->name}}</p>
       @endif
 
       <hr>
 
       <!-- Date/Time -->
-      <p><span class="glyphicon glyphicon-time"></span> Posted {{$post->created_at->diffForHumans()}}</p>
+      <p><span class="glyphicon glyphicon-time"></span> Posted {{$post->created_at->diffForHumans()}} | <i><a href="#comments" onclick="Scroll1('comments')">{{$countComments > 1 ? $countComments." comments" : $countComments." comment"}} | </a></i>
 
+        <a href="{{route('home.post.like', $post->slug)}}">
+          <span class="fa fa-thumbs-up">Like ({{$countLikes}})</span>
+        </a>
+        <a href="{{route('home.post.dislike', $post->slug)}}">
+          <span class="fa fa-thumbs-down">Dislike ({{$countDislikes}})</span>
+        </a>
+
+      </p>
       <hr>
 
       <!-- Preview Image -->
@@ -74,7 +82,7 @@
       @forelse($comments as $comment)
 
         <!-- Comment -->
-        <div class="media">
+        <div class="media" id="comments">
             <a class="pull-left" href="#">
                 <img height="64" class="media-object" src="{{$comment->photo ? $comment->photo : App\Photo::noImage()}}" alt="">
             </a>
@@ -84,26 +92,31 @@
                 </h4>
                 <p>{{$comment->body}}</p>
 
-                <div class="comment-reply-container">
+                  <div class="comment-reply-container">
 
-                  <button class="toggle-reply btn btn-primary pull-right" type="button" name="button">Reply</button>
+                    @if(Auth::check())
 
-                  <div class="comment-reply col-xs-10">
+                      <button class="toggle-reply btn btn-primary pull-right" type="button" name="button">Reply</button>
 
-                    {!! Form::open(['method'=>'POST', 'action'=> 'CommentRepliesController@createReply']) !!}
-                         <div class="form-group">
+                    @endif
 
-                             <input type="hidden" name="comment_id" value="{{$comment->id}}">
+                    <div class="comment-reply col-xs-10">
 
-                             {!! Form::textarea('body', null, ['class'=>'form-control','rows'=>1])!!}
-                         </div>
+                      {!! Form::open(['method'=>'POST', 'action'=> 'CommentRepliesController@createReply']) !!}
+                           <div class="form-group">
 
-                         <div class="form-group">
-                             {!! Form::submit('Submit', ['class'=>'btn btn-primary', 'onClick' => 'return ConfirmSubmitReply();']) !!}
-                         </div>
-                    {!! Form::close() !!}
+                               <input type="hidden" name="comment_id" value="{{$comment->id}}">
 
-                </div>
+                               {!! Form::textarea('body', null, ['class'=>'form-control','rows'=>1])!!}
+                           </div>
+
+                           <div class="form-group">
+                               {!! Form::submit('Submit', ['class'=>'btn btn-primary', 'onClick' => 'return ConfirmSubmitReply();']) !!}
+                           </div>
+                      {!! Form::close() !!}
+
+                  </div>
+
             </div>
 
                 @foreach($comment->replies as $reply)
@@ -135,6 +148,7 @@
                 @endforeach
             </div>
         </div>
+        <hr>
       @empty
         <h3 class="text-center">No comments found</h3>
       @endforelse
@@ -172,6 +186,40 @@
         return true;
       else
         return false;
+    }
+
+    function Scroll() {
+    	var top = document.getElementById("navigation");
+    	var ypos = window.pageYOffset;
+    	if(ypos > 50) {
+    		top.style.opacity = "0";
+    	} else {
+    		top.style.opacity = "1";
+    	}
+    }
+
+    window.addEventListener("scroll",Scroll);
+
+
+    var marginY = 0;
+    var destination = 0;
+    var speed = 10;
+    var scroller = null;
+
+    function Scroll1(elementName) {
+    	destination = document.getElementById(elementName).offsetTop;
+
+    	scroller = setTimeout(function() {
+    		Scroll1(elementName);
+    	}, 1);
+
+    	marginY = marginY + speed;
+
+    	if(marginY >= destination) {
+    		clearTimeout(scroller);
+    	}
+
+    	window.scroll(0, marginY);
     }
 
   </script>

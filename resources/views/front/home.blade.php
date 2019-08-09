@@ -16,10 +16,15 @@
             <p class="lead">by <a href="{{route('admin.users.edit', $post->user->id)}}">{{$post->user->name}}</a></p>
           @else
             <h1>{{$post->title}}</h1>
-            <p class="lead">{{$post->user->name}}</p>
+            <p class="lead">by {{$post->user->name}}</p>
           @endif
 
+        @else
+          <h1>{{$post->title}}</h1>
+          <p class="lead">by {{$post->user->name}}</p>
+
         @endif
+
         <p><span class="glyphicon glyphicon-time"></span>{{$post->created_at->diffForHumans()}}</p>
         <hr>
         <img class="img-responsive" src="{{$post->photo ? $post->photo->file : App\Photo::noPostImage()}}" alt="">
